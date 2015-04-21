@@ -1,0 +1,47 @@
+nav.navbar.navbar-default@navigation
+  div.container-fluid
+    div.navbar-header
+      button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        span class="sr-only"
+          = link_to I18n.t('navigation.home'), root_path
+        span class="sr-only"
+          = link_to I18n.t('navigation.invoices'), invoices_path
+        span class="sr-only"
+          = link_to I18n.t('navigation.cart'), cart_path
+
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.pull-left class="#{'active' if params[:controller] == 'home'}"
+          = link_to I18n.t('navigation.home'), root_path
+        li.pull-left class="#{'active' if params[:controller] == 'invoices'}"
+          = link_to I18n.t('navigation.invoices'), invoices_path
+        li.pull-left class="#{'active' if params[:controller] == 'cart'}"
+          = link_to I18n.t('navigation.cart'), cart_path
+
+        li
+          - if policy(product_cart).show?
+            span@credit
+              = decorated_current_user.display_credit_full
+
+        li.pull-right
+          - if user_signed_in?
+            = link_to I18n.t('devise.sessions.buttons.signed_out'), destroy_user_session_path, method: 'DELETE'
+          - else
+            = link_to I18n.t('devise.sessions.buttons.signed_in'), new_user_session_path
+        - if policy(product_cart).show?
+          li.pull-right
+            .cart_logo
+              a href=cart_path
+                = evil_icon('ei-cart', { size: :s, class: 'cartIcon' })
+            ul.cart_info
+              li
+                a href=cart_path
+                  span@fullCount
+                    => product_cart.full_count
+                  span@fullCountText
+                    = Russian.p(product_cart.full_count, 'товар','товара','товаров')
+              li
+                a href=cart_path
+                  => I18n.t('cart.full_price')
+                  span@fullPrice
+                    = number_to_currency product_cart.full_price

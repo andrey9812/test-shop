@@ -1,0 +1,23 @@
+ru:
+  home:
+    balance:
+      increase:
+        thousand: 'положить на баланс 1000р'
+  navigation:
+    home: 'Главная'
+    invoices: 'Покупки'
+    cart: 'Корзина'
+  invoice:
+    plural: 'Покупки'
+    date: 'Дата покупки'
+    email: 'Почта пользователя'
+    cart: 'Содержимое корзины'
+    full_price: 'Окончательная сумма'
+  cart:
+    empty: 'Ваша корзина пуста'
+    count: 'Количество'
+    price: 'Цена'
+    in: 'В корзине'
+    full_price: 'на сумму'
+    pay:
+      from_balance: 'Оплатить с баланса'

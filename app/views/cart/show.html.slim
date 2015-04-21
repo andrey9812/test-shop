@@ -1,0 +1,41 @@
+javascript:
+  $(document).on('ready', function() {
+    new Views.Cart.Show($('@cart'));
+  });
+
+.cart@cart
+  .row
+    - if product_cart.empty?
+      = I18n.t('cart.empty')
+    - else
+      - product_cart.to_json.each do |product|
+        .product
+          .product-image
+            = link_to '', '#', style: "background-image: url(#{product[0]});"
+          .product_delete
+            = link_to cart_path(id: product[6]), method: 'DELETE' do
+              = evil_icon('ei-trash', { size: :s, class: 'cartIcon' })
+          .product_title
+            = product[2]
+          .product_description
+            = product[3]
+          .product_count
+            => I18n.t('cart.count') + ':'
+            = number_field_tag 'count', product[5].to_i, in: 1...100, size: 6, role: 'productCount', data: { id: product[6] }
+          .product_price
+            => I18n.t('cart.price') + ':'
+            = product[4]
+  .row
+    .cart_info
+      => I18n.t('cart.in')
+      span@fullCount
+        => product_cart.full_count
+      span@fullCountText
+        => ' ' + Russian.p(product_cart.full_count, 'товар', 'товара', 'товаров')
+      => ' ' + I18n.t('cart.full_price')
+      span@fullPrice
+        => product_cart.formated_full_price
+    - unless product_cart.empty?
+      .cart_buy
+        = link_to I18n.t('cart.pay.from_balance'), invoices_path, method: 'POST', class: 'btn'
+  

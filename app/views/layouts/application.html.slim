@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Shop
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+  body
+    = evil_icons_sprite
+
+    = render partial: 'shared/navigation'
+
+    p.notice
+      = notice
+    p.alert
+      = alert
+
+    .container
+      = yield
+
+    .modal@modal
+      .modal-dialog@modalDialog
+        .modal-content@modalContent

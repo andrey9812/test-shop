@@ -1,0 +1,43 @@
+.navbar-nav
+  width: 100%
+  text-align: center
+  li
+    float: none
+    display: inline-block
+
+.navbar-fixed
+  position: fixed
+  width: 100%
+  margin: -10px 0 0 0
+  padding: 0
+
+.center-block
+  text-align: center
+
+.col-lg-4-padding
+  padding: 10px 0 10px 0
+
+.btn
+  position: relative
+  display: inline-block
+  cursor: pointer
+  margin: 5px
+  padding: 5px 7px
+  white-space: nowrap
+  font-size: 14px
+  line-height: 14px
+  text-decoration: none
+  background: #eeeeee
+  border: none
+  border-radius: 5px
+  &:active, &.active
+    position: relative
+    top: 1px
+    background: #cfcfcf
+  &:hover
+    background: #dfdfdf
+    text-decoration: none
+  &.disabled, &[disabled], fieldset[disabled] &
+    cursor: not-allowed
+    pointer-events: none
+    opacity: .65

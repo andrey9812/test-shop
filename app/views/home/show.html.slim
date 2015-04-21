@@ -1,0 +1,22 @@
+javascript:
+  $(document).on('ready', function() {
+    new Views.Home.Show($('@container'));
+  });
+
+
+@container
+  .row
+    .center-block
+      = link_to I18n.t('home.balance.increase.thousand'), transactions_path, method: 'POST', class: 'btn', role: 'addMoney'
+  .row
+    - decorated_products_collection.each do |product|
+      .col-xs-6.col-lg-4.col-lg-4-padding
+        h4
+          = product.title
+        div
+          = product.price
+        = image_tag product.main_image_path, style: 'width: 300px;'
+        div.center-block
+          = product.display_buy_button
+
+    = paginate decorated_products_collection

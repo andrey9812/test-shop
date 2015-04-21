@@ -1,0 +1,28 @@
+table.table
+  caption
+    = I18n.t('invoice.plural')
+  thead
+    tr
+      th
+        | #id
+      th
+        = I18n.t('invoice.date')
+      th
+        = I18n.t('invoice.email')
+      th
+        = I18n.t('invoice.cart')
+      th
+        = I18n.t('invoice.full_price')
+  tbody
+    - decorated_invoices_collection.each do |invoice|
+      tr
+        th scope="row"
+          = invoice.id
+        td
+          = invoice.formated_date
+        td
+          = invoice.email
+        td
+          = invoice.display_products
+        td
+          = invoice.full_sum
