@@ -13,10 +13,8 @@ class Invoice < ActiveRecord::Base
   validates :cost, presence: true
   validates :user, presence: true
 
-  after_commit on: :create do
-    if self.transactions.empty?
-      self.transactions.create(value: self.cost, user: self.user, type: 'inner').try(:pay)
-    end
+  after_create do
+    self.transactions.create(value: self.cost, user: self.user, type: 'inner').try(:pay)
   end
 
   scope :by_date, -> { order( 'created_at DESC' ) }
